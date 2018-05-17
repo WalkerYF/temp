@@ -328,7 +328,10 @@ wyf
 \begin{tcolorbox}[title = {观察二}]
     能否检测到PC1，PC2，PC3的ICMP包？
 \end{tcolorbox}
-TODO:分析yb？？？？？？？
+当一台主机能ping到另一台主机时，wireshark可以捕捉到另一台主机的ICMP response 包。\\ 
+在本拓扑中, PC3可以捕捉到PC2的ICMP包，但无法捕捉到PC1的ICMP包。PC2可以捕捉到
+PC3可以捕捉到PC2的ICMP包，但无法捕捉到PC1的ICMP包。PC2可以捕捉到PC3的ICMP包，但无法捕捉到PC1的ICMP包。
+PC1由于不与PC2和PC3在同一个VLAN中，故其无法捕捉到PC2和PC3的ICMP包。
 
 %\usepackage{tcolorbox}
 %\newtcolorbox{mybox}{}
@@ -337,8 +340,17 @@ TODO:分析yb？？？？？？？
 \begin{tcolorbox}[title = {观察三}]
 能否捕获到Trunk链路上的VLAN ID？请讨论原因。
 \end{tcolorbox}
-TODO:分析yb
+交换机的vlan模式分为access，trunk和hybrid三种。\\
+在trunk模式的接收端口中，所有进入的链路层帧，有tag时，不改变原来的tag，直接
+转发该帧；若帧无tag，则加上PVID（端口默认VLAN的ID，默认为1）和加上默认优先级，并转发。\\
+在trunk模式的发送端口中，若帧带有tag（且VID与PVID不同），则不修改tag直接转发该包。若
+帧不带有tag，则直接进行转发。\\ 
 
+在access模式的发送端口中，若VID等于PVID，则去掉tag再转发。若VID不等于PVID，则不转发。
+
+综上讨论，所有主机不可能捕获到Trunk链路上的VID。这是因为所有主机通过access模式
+连接到路由器。所有链路层帧要么被access模式的端口丢弃，要么被去除tag。所有无法捕获到VID。
+#TODO: 在这里加入图片 1944156585.png
 %\usepackage{tcolorbox}
 %\newtcolorbox{mybox}{}
 %\renewtcolorbox{mybox}{colback = red!25!white, colframe = red!75!black}
