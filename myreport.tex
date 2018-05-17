@@ -116,11 +116,21 @@
 
 \section{实验拓扑}
 
-TODO:画一个拓扑图，这个图和书本的图一样。
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/2018-05-18-03-26-52.png"}
+    \caption{实验拓扑}
+    \label{fig:e1-topo}
+    %\end{adjustwidth}
+\end{figure}
 
-PC1，我 
-PC2，颜彬
-PC3，陈泽
+
 
 \section{实验步骤}
 
@@ -319,8 +329,28 @@ PC3，陈泽
 \begin{tcolorbox}[title = {观察一}]
 主机之间能否互相通信？
 \end{tcolorbox}
-TODO:需要互ping的图
-wyf
+
+PC1 不能ping通PC2，PC3， PC2,3之间可以相互ping通。
+
+可见\autoref{fig:e1-s7-ping-suc}。
+
+
+
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/2018-05-18-03-31-11.png"}
+    \caption{PC2与PC3能够ping通}
+    \label{fig:e1-s7-ping-suc}
+    %\end{adjustwidth}
+\end{figure}
+
+
 %\usepackage{tcolorbox}
 %\newtcolorbox{mybox}{}
 %\renewtcolorbox{mybox}{colback = red!25!white, colframe = red!75!black}
@@ -429,9 +459,6 @@ Gratuitous ARP是一种ARP请求，但该请求不会收到任何应答。
 \end{figure}
 
 
-麻烦诶，第二题没法做。没有show mac-address-table命令截图啊。也不知道是不是相同。。。怎么办好呢
-
-
 
 %\usepackage{tcolorbox}
 %\newtcolorbox{mybox}{}
@@ -501,11 +528,24 @@ access（交换机与主机相连）和trunk（交换机之间互联）。这三
 
 \section{实验拓扑}
 
-TODO:书本图片P177
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/2018-05-18-03-25-45.png"}
+    \caption{实验拓扑图}
+    \label{fig:e2-topo}
+    %\end{adjustwidth}
+\end{figure}
+
 
 \section{实验步骤}
 
-分析:本实验的预期是将\autoref{TODO:拓扑图}中的三台计算机,划分进不同的VLAN,并让处于不同VLAN的计算机互相隔离.然后启用三层交换机的路由功能,让已经隔离的计算机能互相通信.
+分析:本实验的预期是将\autoref{fig:e2-topo}中的三台计算机,划分进不同的VLAN,并让处于不同VLAN的计算机互相隔离.然后启用三层交换机的路由功能,让已经隔离的计算机能互相通信.
 (如:隔离后PC1能ping通PC2,PC3).
 
 \subsection{步骤1:连接线路并测试连通性}
@@ -1028,8 +1068,17 @@ TODO:书本图片P177
 
 \chapter{问题三}
 
+%\usepackage{tcolorbox}
+%\newtcolorbox{mybox}{}
+%\renewtcolorbox{mybox}{colback = red!25!white, colframe = red!75!black}
+%\begin{mybox}[title = {}]
+\begin{tcolorbox}[title = {问题三}]
+
 该部分主要解决这样的问题：
 跨交换机不借助trunk模式实现VLAN通信，如何做到？
+
+\end{tcolorbox}
+
 
 我们使用了以下的方式来实现：
 
