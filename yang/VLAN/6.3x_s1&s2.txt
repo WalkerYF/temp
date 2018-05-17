@@ -1,0 +1,56 @@
+0-S5750-1(config)#vlan 10
+0-S5750-1(config-vlan)#exit
+0-S5750-1(config)#interface Giga 1/0/5
+0-S5750-1(config-if)#switchport access vlan 10
+0-S5750-1(config-if)#exit
+0-S5750-1(config)#interface Giga 1/0/24
+0-S5750-1(config-if)#switchport access vlan 10
+0-S5750-1(config-if)#exit
+0-S5750-1(config)#vlan 20
+0-S5750-1(config-vlan)#exit
+0-S5750-1(config-vlan)#interface Giga 1/0/15
+0-S5750-1(config-if)#siswitchport access vlan 20
+0-S5750-1(config-if)#exit
+0-S5750-1(config)#interface Giga 1/0/23
+0-S5750-1(config-if)#switchport access vlan 20
+0-S5750-1(config-if)#exit
+
+——————————————————————————————————————————————————————————————————————————————————————————————
+
+0-S5750-2(config)#vlan 10
+0-S5750-2(config-vlan)#exit
+0-S5750-2(config)#interface Giga 1/0/5
+0-S5750-2(config-if)#swicthport access vlan 10
+0-S5750-2(config-if)#exit
+0-S5750-2(config)#vlan 20
+0-S5750-2(config-if)#switchport access vlan 10
+0-S5750-2(config-vlan)#exit
+0-S5750-2(config)#interface Giga 1/0/15
+0-S5750-2(config-if)#switchport access vlan 20
+0-S5750-2(config-if)#exit
+0-S5750-2(config)#vlan 20
+0-S5750-2(config-vlan)#exit
+0-S5750-2(config)#interface Giga 1/0/24
+0-S5750-2(config-if)#switchport access vlan 10
+0-S5750-2(config-if)#exit
+0-S5750-2(config)#interface Giga 1/0/23
+0-S5750-2(config-if)#switchport access vlan 20
+0-S5750-2(config-if)#exit
+
+——————————————————————————————————————————————————————————————————————————————————————
+  跨交换机实现VLAN通信，而不借助trunk模式，我们可以将两个交换机用两条跳线连接起来，交换机A的24号端口连交换机B的24号端口，A的23号端口连B的23号端口，
+然后按照下面的拓扑图，PC1属于交换机A的VLAN10，PC2属于交换机A的VLAN20，PC3属于交换机B的VLAN20，PC4属于交换B的VLAN10，然后再将交换机A和B的24号端口划分为VLAN10，
+交换机A和B的23号端口划分为VLAN20。
+
+  #TODO 拓扑图
+
+  下面测试PC3与PC2的互联（它们是属于同一VLAN下，但是在不同交换机，并且没有借助trunk模式）：
+
+  #TODO ping图
+
+  结果是，PC3与PC2是可以互联的，因为PC3发出的报文是先在交换机B里面广播给所有属于VLAN20的端口，即就是23号端口，#TODO (感觉下句话的原理没阐述清楚？) 然后交换机B的23号端口会将数据转给
+交换机A的23号端口，交换机A又会将该报文在自己里面广播给所有属于VLAN20的端口，即就是15号端口，所以PC4会收到来自的PC3的报文，而PC4发送给PC3的报文也
+是按照这个流程转发给PC3。
+  
+
+
