@@ -460,8 +460,12 @@ access（交换机与主机相连）和trunk（交换机之间互联）。这三
 \begin{tcolorbox}[title = {思考题一}]
 说明vlan技术中的trunk模式端口的意义。
 \end{tcolorbox}
-
-TODO:yb
+如图\autoref{fig:e1}所示。\\ 
+配置为trunk模式的接收端口中，若其接收到不带tag的帧，则自动为其加上PVID（Port VLAN ID)
+和默认优先级。否则，该帧的tag不被修改，直接进行转发。\\ 
+配置为trunk模式的发送端口中，若帧带有tag的VLAN ID恰好为PVID，则去掉VLAN ID tag再转发。否则，
+不改变tag直接转发。\\ 
+其中PVID（Port VLAN ID）是端口的默认VLAN ID。若没有被配置，trunk端口的PVID为VLAN 1。
 
 \begin{tcolorbox}[title = {思考题二}]
 如何查看trunk接口允许哪些VLAN通过？
@@ -757,9 +761,25 @@ TODO:书本图片P177
 
 \begin{enumerate}
     \item 测试PC2 与PC3 的连通性,发现PC2与PC3能够ping通。
-    TODO:ping通截图 颜彬处
+
+    %\usepackage{changepage}
+    %\usepackage{rotating}
+    %\usepackage{float}
+    %\usepackage[section]{placeins}
+    %\begin{sidewaystable}[!Htp]
+    \begin{figure}[htp]
+        %\begin{adjustwidth}{-1.5cm}{-1cm}
+        \centering
+        \includegraphics[width=13cm]{"./figure/id004.png"}
+        \caption{}
+        \label{fig:}
+        %\end{adjustwidth}
+    \end{figure}
+    
 
     \item 测试PC1 与 PC2 的连通性
+    从图中可以看出,ifconfig指令指示出PC2的IP地址。其后的ping中，与PC3可以连通，与PC1无法连通。
+    
     
     %\usepackage{changepage}
     %\usepackage{rotating}
@@ -859,7 +879,7 @@ TODO:书本图片P177
 \begin{figure}[htp]
     %\begin{adjustwidth}{-1.5cm}{-1cm}
     \centering
-    \includegraphics[width=13cm]{"./figure/2018-05-18-02-37-36.png"}
+    \includegraphics[width=13cm]{"./figure/step_10_success_ping_other_subnet.png"}
     \caption{PC1与PC2，PC3能够ping通}
     \label{fig:e2-s11-ping}
     %\end{adjustwidth}
@@ -875,9 +895,23 @@ TODO:书本图片P177
 能否监控到PC1, PC2, PC3 的ICMP包?
 \end{tcolorbox}
 
-TODO:wireshark截图,并适当分析
-颜彬的图
+能够抓到相应的ICMP包，可见\autoref{fig:e2-catch}.
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/id005.png"}
+    \caption{查看抓包结果}
+    \label{fig:e2-catch}
+    %\end{adjustwidth}
+\end{figure}
 
+
+从图中可以看出，主机PC2成功抓到了PC1和PC3的ICMP包。
 %\usepackage{tcolorbox}
 %\newtcolorbox{mybox}{}
 %\renewtcolorbox{mybox}{colback = red!25!white, colframe = red!75!black}
@@ -1058,14 +1092,7 @@ TODO:wireshark截图,并适当分析
 % \end{thebibliography}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 附录
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\appendix
-
-
-
-\chapter{有附录吗？}
-
-TODO:可能有附录，先留着？
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cleardoublepage
 \end{document}
