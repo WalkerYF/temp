@@ -101,9 +101,9 @@
     \toprule
     小组成员姓名 & 自评 & 分工 \\
     \midrule
-    王永锋 & 100 & TODO: 及实验报告排版 \\
-    颜彬 & 100 & TODO:\\
-    杨陈泽 & 100 & TODO:分工 \\
+    王永锋 & 100 & 实验6-2 6-3 操作实践及报告编写 及最终实验报告排版 \\
+    颜彬 & 100 & 实验6-2 6-3操作实践 实验6-2报告编写，  \\
+    杨陈泽 & 100 & 实验6-2 6-3操作实践 实验补充问题三 实验及报告编写 \\
   \bottomrule
   \hiderowcolors
   \end{tabular}
@@ -350,7 +350,22 @@ PC1由于不与PC2和PC3在同一个VLAN中，故其无法捕捉到PC2和PC3的I
 
 综上讨论，所有主机不可能捕获到Trunk链路上的VID。这是因为所有主机通过access模式
 连接到路由器。所有链路层帧要么被access模式的端口丢弃，要么被去除tag。所有无法捕获到VID。
-#TODO: 在这里加入图片 1944156585.png
+
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/194156585.png"}
+    \caption{补充说明}
+    \label{fig:e1}
+    %\end{adjustwidth}
+\end{figure}
+
+
 %\usepackage{tcolorbox}
 %\newtcolorbox{mybox}{}
 %\renewtcolorbox{mybox}{colback = red!25!white, colframe = red!75!black}
@@ -375,17 +390,46 @@ B主机 192.168.10.20
 若该地址不在表中，则交换机将帧送出到每一个端口。特别地，由于没有一个源MAC地址是广播地址(`FF:FF:FF:FF:FF:FF`)，
 故广播地址不可能出现在MAC地址表中（不可能被交换机学习到）。故所有以广播地址为目的地址的帧，都会被广播。
 下图显示了A主机ping向B主机时，ARP请求、ARP应答和ACMP协议的抓包情况。\\ 
-#TODO: 在这里加入照片。ws01.png
 
-每当主机更换IP地址时，它都会告知其所有邻居。如图\TODO:所示。
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/ws01.png"}
+    \caption{}
+    \label{fig:e1-ip}
+    %\end{adjustwidth}
+\end{figure}
+
+
+每当主机更换IP地址时，它都会告知其所有邻居。如\autoref{fig:e1-ip}所示。
 
 假设主机A将其IP地址更换成192.168.10.111。主机A会首先使用ARP协议请求自己的IP地址对应的mac地址。
 这一步的目的是确保自己的IP不与子网内的其他IP地址冲突。当IP地址不冲突时，该ARP请求应该得不到任何回应。
 主机A在等待一段时间且没有接收到ARP应答时，可以确信自己的IP地址不重复，于是主机Ａ发送Gratuitous ARP帧。
 Gratuitous ARP是一种主动ARP请求，它的作用是告知其他主机，本主机的IP地址和MAC地址，省去其他主机发送ARP请求的麻烦。
 Gratuitous ARP是一种ARP请求，但该请求不会收到任何应答。
-#TODO:在这里加入照片 ws02.png
-#TODO: 麻烦诶，第二题没法做。没有show mac-address-table命令截图啊。也不知道是不是相同。。。怎么办好呢
+
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/ws02.png"}
+    \caption{补充说明}
+    \label{fig:e1-arp}
+    %\end{adjustwidth}
+\end{figure}
+
+
+麻烦诶，第二题没法做。没有show mac-address-table命令截图啊。也不知道是不是相同。。。怎么办好呢
 
 
 
@@ -422,12 +466,31 @@ TODO:yb
 \begin{tcolorbox}[title = {思考题二}]
 如何查看trunk接口允许哪些VLAN通过？
 \end{tcolorbox}
-TODO:wyf
+
+可以使用\texttt{show interface gig 0/24 switchport}命令来查看，效果如下图所示。其中红箭头表示允许的vlan为所有（all)。
+
+
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/2018-05-18-02-31-27.png
+    "}
+    \caption{查看允许VLAN}
+    \label{fig:e1-t2}
+    %\end{adjustwidth}
+\end{figure}
+
 
 \begin{tcolorbox}[title = {思考题三}]
 实验开始前请先确定三台PC机处于一个网段里面。为什么做这样的限定？
 \end{tcolorbox}
-TODO:wyf
+
+我们这一次实验并没有设计默认网关，也没有设置路由转发，因此当发往处于不同网段的主机时，不可能发送过去。
 
 
 \chapter{实验二:通过三层交换机实现VLAN间路由}
@@ -693,7 +756,7 @@ TODO:书本图片P177
 \subsection{步骤7:测试}
 
 \begin{enumerate}
-    \item 测试PC2 与PC3 的连通性
+    \item 测试PC2 与PC3 的连通性,发现PC2与PC3能够ping通。
     TODO:ping通截图 颜彬处
 
     \item 测试PC1 与 PC2 的连通性
@@ -786,8 +849,23 @@ TODO:书本图片P177
 计算机之间是否连通?
 \end{tcolorbox}
 
-TODO:ping通的截图,三台都要
-1. 我手机上PC1 pc2 PC3
+能够ping通。
+
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/2018-05-18-02-37-36.png"}
+    \caption{PC1与PC2，PC3能够ping通}
+    \label{fig:e2-s11-ping}
+    %\end{adjustwidth}
+\end{figure}
+
+
 
 %\usepackage{tcolorbox}
 %\newtcolorbox{mybox}{}
@@ -822,7 +900,12 @@ TODO:wireshark截图,并适当分析
     %\end{adjustwidth}
 \end{figure}
 
-与拓扑图比较，该路由表中的表项的意思为：TODO:wyf来写
+与拓扑图比较，该路由表中的表项的意思为：
+
+\begin{enumerate}
+    \item 表示与该交换机直连着的VLAN相应的子网范围。
+    \item 表示该交换机的端口IP。
+\end{enumerate}
 
 
 
@@ -834,20 +917,22 @@ TODO:wireshark截图,并适当分析
 在命令提示符窗口下,使用route print 是否能够查看实验设置的路由?
 \end{tcolorbox}
 
-TODO:截图,分析wyf
+如\autoref{fig:e2-s11-route}所示，可以在默认网关处看到设置的路由。
 
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/2018-05-18-02-39-50.png"}
+    \caption{打印主机路由表}
+    \label{fig:e2-s11-route}
+    %\end{adjustwidth}
+\end{figure}
 
-\subsection{实验结论}
-由本实验能得到什么结论?
-
-TODO:??wyf
-\begin{enumerate}
-    \item 
-    \item 
-    \item 
-    \item 
-    \item 
-\end{enumerate}
 
 \section{实验思考}
 
@@ -859,7 +944,9 @@ TODO:??wyf
 实验用到了三层交换机的路由功能,为什么在VLAN配置好IP地址之后,不同的VLAN间(PC1,PC2)就可以相互通信了?
 \end{tcolorbox}
 
-TODO:??wyf
+这里的问题是，为什么不需要设置转发表，只需要设置IP地址，不同的VLAN就可以相互通信呢？
+
+这里我们需要理解IP包的转发原理。由前面的图我们可以看到路由器的转发表会自动加上直连的子网和端口IP
 
 \subsection{思考题二}
 
@@ -867,8 +954,23 @@ TODO:??wyf
 请使用\texttt{show ip route} 命令查看三层交换机的路由表,并说明每个条目表示什么?
 \end{tcolorbox}
 
-TODO:截图并分析wyf
-figure/2018-05-17-17-26-19.png
+
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/2018-05-17-17-26-19.png"}
+    \caption{}
+    \label{fig:}
+    %\end{adjustwidth}
+\end{figure}
+
+
+
 
 \subsection{思考题三}
 
@@ -880,9 +982,63 @@ figure/2018-05-17-17-26-19.png
 (跨交换机的不同vlan间通信)若要PC1和PC3相互通信,需要怎么进行配置.
 \end{tcolorbox}
 
-好像不用配置???
+在这里，经过测试，在前面的配置的基础上，已经可以直接ping通。
 
-TODO:截图并分析
+在另一种情况中，如果两台交换机各自具有两个不同的VLAN，可以在交换机中各自增加一个与对面VLAN一致的网关，作为一个虚接口，就可以连通了。
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 问题三
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\chapter{问题三}
+
+该部分主要解决这样的问题：
+跨交换机不借助trunk模式实现VLAN通信，如何做到？
+
+我们使用了以下的方式来实现：
+
+跨交换机实现VLAN通信，而不借助trunk模式，我们可以将两个交换机用两条跳线连接起来，交换机A的24号端口连交换机B的24号端口，A的23号端口连B的23号端口，
+然后按照下面的拓扑图，PC1属于交换机A的VLAN10，PC2属于交换机A的VLAN20，PC3属于交换机B的VLAN20，PC4属于交换B的VLAN10，然后再将交换机A和B的24号端口划分为VLAN10，
+交换机A和B的23号端口划分为VLAN20。
+
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/2018-05-18-02-58-05.png"}
+    \caption{拓扑图}
+    \label{fig:e3-topo}
+    %\end{adjustwidth}
+\end{figure}
+
+
+下面测试PC3与PC2的互联（它们是属于同一VLAN下，但是在不同交换机，并且没有借助trunk模式）：
+
+%\usepackage{changepage}
+%\usepackage{rotating}
+%\usepackage{float}
+%\usepackage[section]{placeins}
+%\begin{sidewaystable}[!Htp]
+\begin{figure}[htp]
+    %\begin{adjustwidth}{-1.5cm}{-1cm}
+    \centering
+    \includegraphics[width=13cm]{"./figure/6-3x.png"}
+    \caption{ping通图}
+    \label{fig:e3-ping}
+    %\end{adjustwidth}
+\end{figure}
+
+
+结果是，PC3与PC2是可以互联的，因为PC3发出的报文是先在交换机B里面广播给所有属于VLAN20的端口，即就是23号端口，然后交换机B的23号端口会将数据转给交换机A的23号端口，交换机A又会将该报文在自己里面广播给所有属于VLAN20的端口，即就是15号端口，所以PC4会收到来自的PC3的报文，而PC4发送给PC3的报文也是按照这个流程转发给PC3。
+  
+
+
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % 参考文献
@@ -904,6 +1060,8 @@ TODO:截图并分析
 % 附录
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \appendix
+
+
 
 \chapter{有附录吗？}
 
